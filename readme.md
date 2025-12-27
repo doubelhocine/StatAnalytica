@@ -1,4 +1,4 @@
-# 📈 TimeSeries Forecast Pro
+# 📈 StatAnalytica
 
 **Application avancée de prévision des séries temporelles**
 
@@ -15,3 +15,4 @@
 6. **Cliquer sur Deploy**
 
 ## 📁 Structure du projet
+
