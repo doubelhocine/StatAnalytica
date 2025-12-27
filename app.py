@@ -480,4 +480,5 @@ def main():
         st.markdown("## " + st.query_params.get("page", ""))
 
 if __name__ == "__main__":
+
     main()
