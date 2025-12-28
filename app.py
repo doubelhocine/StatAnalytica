@@ -1,6 +1,7 @@
 import streamlit as st
 import sys
 import os
+import base64
 from pathlib import Path
 
 # Configuration de la page
@@ -825,6 +826,24 @@ def load_css():
 
 # Charger le CSS
 load_css()
+def get_logo_base64():
+    """Convertit le logo en base64 avec fallback"""
+    logo_paths = [
+        Path("assets/logo.png"),
+        Path("static/logo.png"),
+        Path("logo.png"),
+        Path(__file__).parent / "assets" / "logo.png",
+    ]
+    
+    for path in logo_paths:
+        if path.exists():
+            try:
+                with open(path, "rb") as f:
+                    return base64.b64encode(f.read()).decode()
+            except:
+                continue
+    
+    return None
 
 # === Header avec logo et auteurs ===
 def create_header():
@@ -1024,48 +1043,93 @@ def main_page():
 
 # === Page sidebar ===
 def create_sidebar():
-    with st.sidebar:
-st.markdown("""
-<div style="text-align: center; margin-bottom: 2rem;">
-    <div style="
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 10px;
-        overflow: hidden;
-        border: 3px solid rgba(67, 97, 238, 0.3);
-        box-shadow: 0 5px 15px rgba(67, 97, 238, 0.2);
-    ">
-        <img src="app/static/logo.png" 
-             alt="StatAnalytica Logo" 
-             style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+   logo_b64 = get_logo_base64()
+
+if logo_b64:
+    st.markdown(f"""
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <div style="
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 3px solid rgba(67, 97, 238, 0.3);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.25);
+            transition: transform 0.3s;
+        ">
+            <img src="data:image/png;base64,{logo_b64}" 
+                 alt="StatAnalytica" 
+                 style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <h2 style="
+            margin: 0; 
+            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            font-size: 1.9rem;
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        ">
+            📊 StatAnalytica
+        </h2>
+        <p style="
+            margin: 0; 
+            color: #6b7280; 
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.8;
+        ">
+            Master ROMARIN
+        </p>
     </div>
-    <h2 style="
-        margin: 0; 
-        background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-weight: 800;
-        font-size: 1.8rem;
-        letter-spacing: -0.5px;
-    ">
-        StatAnalytica
-    </h2>
-    <p style="
-        margin: 5px 0 0 0; 
-        color: #6b7280; 
-        font-size: 0.9rem;
-        font-weight: 500;
-    ">
-        Advanced Statistical Analysis
-    </p>
-</div>
-""", unsafe_allow_html=True)
-        # Informations de session
+    """, unsafe_allow_html=True)
+else:
+    # Fallback avec emoji si logo non trouvé
+    st.markdown("""
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <div style="
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 32px;
+            color: white;
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
+        ">
+            📊
+        </div>
+        <h2 style="
+            margin: 0; 
+            color: #4361ee;
+            font-weight: 800;
+            font-size: 1.9rem;
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        ">
+            StatAnalytica
+        </h2>
+        <p style="
+            margin: 0; 
+            color: #6b7280; 
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.8;
+        ">
+            Advanced Statistical Analysis
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+ # Informations de session
         st.markdown("---")
         st.markdown("### 📊 Session actuelle")
         
@@ -1094,5 +1158,6 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
