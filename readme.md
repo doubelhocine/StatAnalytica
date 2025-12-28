@@ -14,5 +14,5 @@
 5. **Configurer les variables** d'environnement si nécessaire
 6. **Cliquer sur Deploy**
 
-## 📁 Structure du projet
+
 
