@@ -351,108 +351,6 @@ def create_sidebar():
             <h3 style="margin: 0;">Navigation</h3>
         </div>
         """, unsafe_allow_html=True)
-        
-        # Menu de navigation stylisé
-        st.markdown("### 🗂️ Étapes du projet")
-        
-        # Indicateur de progression (simulé)
-        st.progress(0)
-        
-        st.markdown("""
-        <div style="margin: 1.5rem 0;">
-            <a href="/?page=1" style="text-decoration: none; color: inherit;">
-                <div style="
-                    padding: 0.8rem;
-                    border-radius: 10px;
-                    margin: 0.3rem 0;
-                    background: #f0f2f6;
-                    transition: all 0.3s;
-                    border-left: 4px solid #667eea;
-                ">
-                    <strong>1. 📁 Importation</strong>
-                </div>
-            </a>
-            
-            <a href="/?page=2" style="text-decoration: none; color: inherit;">
-                <div style="
-                    padding: 0.8rem;
-                    border-radius: 10px;
-                    margin: 0.3rem 0;
-                    background: #f0f2f6;
-                    transition: all 0.3s;
-                    border-left: 4px solid #667eea;
-                ">
-                    <strong>2. 📊 Analyse Exploratoire</strong>
-                </div>
-            </a>
-            
-            <a href="/?page=3" style="text-decoration: none; color: inherit;">
-                <div style="
-                    padding: 0.8rem;
-                    border-radius: 10px;
-                    margin: 0.3rem 0;
-                    background: #f0f2f6;
-                    transition: all 0.3s;
-                    border-left: 4px solid #667eea;
-                ">
-                    <strong>3. 📈 Tests de Stationnarité</strong>
-                </div>
-            </a>
-            
-            <a href="/?page=4" style="text-decoration: none; color: inherit;">
-                <div style="
-                    padding: 0.8rem;
-                    border-radius: 10px;
-                    margin: 0.3rem 0;
-                    background: #f0f2f6;
-                    transition: all 0.3s;
-                    border-left: 4px solid #667eea;
-                ">
-                    <strong>4. 🧮 Modèles Classiques</strong>
-                </div>
-            </a>
-            
-            <a href="/?page=5" style="text-decoration: none; color: inherit;">
-                <div style="
-                    padding: 0.8rem;
-                    border-radius: 10px;
-                    margin: 0.3rem 0;
-                    background: #f0f2f6;
-                    transition: all 0.3s;
-                    border-left: 4px solid #667eea;
-                ">
-                    <strong>5. 🤖 Modèles & Prévisions</strong>
-                </div>
-            </a>
-            
-            <a href="/?page=6" style="text-decoration: none; color: inherit;">
-                <div style="
-                    padding: 0.8rem;
-                    border-radius: 10px;
-                    margin: 0.3rem 0;
-                    background: #f0f2f6;
-                    transition: all 0.3s;
-                    border-left: 4px solid #667eea;
-                ">
-                    <strong>6. 🧪 Tests & Validation</strong>
-                </div>
-            </a>
-            
-            <a href="/?page=7" style="text-decoration: none; color: inherit;">
-                <div style="
-                    padding: 0.8rem;
-                    border-radius: 10px;
-                    margin: 0.3rem 0;
-                    background: #f0f2f6;
-                    transition: all 0.3s;
-                    border-left: 4px solid #667eea;
-                ">
-                    <strong>7. 📤 Export & Logs</strong>
-                </div>
-            </a>
-        </div>
-        """, unsafe_allow_html=True)
-        
         # Informations de session
         st.markdown("---")
         st.markdown("### 📊 Session actuelle")
@@ -482,3 +380,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
