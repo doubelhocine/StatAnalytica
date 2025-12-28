@@ -461,7 +461,7 @@ def load_css():
             text-align: center;
             padding: 2.5rem;
             margin-top: 4rem;
-            background: linear-gradient(135deg, var(--dark) 0%, var(--light) 100%);
+            background: linear-gradient(135deg, #ffe4ec 0%, #ffd1e1 100%); 
             color: var(--text-primary) !important;
             border-radius: 20px 20px 0 0;
             position: relative;
@@ -1108,6 +1108,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
