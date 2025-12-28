@@ -1065,7 +1065,7 @@ def create_sidebar():
                      style="width: 80px; height: 80px; border-radius: 15px; margin-bottom: 10px;">
                 <h3 style="margin: 0; color: #4361ee;">StatAnalytica</h3>
                 <p style="margin: 5px 0 0 0; color: #6b7280; font-size: 0.9rem;">
-                    StatAnalytica
+                    Belhocine & Bachir
                 </p>
             </div>
             """, unsafe_allow_html=True)
@@ -1108,6 +1108,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
