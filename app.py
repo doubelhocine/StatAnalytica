@@ -1130,8 +1130,8 @@ else:
     </div>
     """, unsafe_allow_html=True)
  # Informations de session
-        st.markdown("---")
-        st.markdown("### 📊 Session actuelle")
+     st.markdown("---")
+     st.markdown("### 📊 Session actuelle")
         
         if "journal" in st.session_state and "session" in st.session_state["journal"]:
             session_info = st.session_state["journal"]["session"]
@@ -1158,6 +1158,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
