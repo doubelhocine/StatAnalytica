@@ -4,6 +4,7 @@
 
 > Projet académique - Master ROMARIN  
 > Réalisé par **Dounia Belhocine** & **Hadil Bachir**
+> À l'intention **Djamel Chaabane**
 
 ## 🚀 Déploiement sur Streamlit Cloud
 
@@ -13,6 +14,7 @@
 4. **Spécifier le chemin** : `app.py`
 5. **Configurer les variables** d'environnement si nécessaire
 6. **Cliquer sur Deploy**
+
 
 
 
