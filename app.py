@@ -3,7 +3,32 @@ import sys
 import os
 import base64
 from pathlib import Path
-
+def get_logo_base64():
+    """Trouve et convertit le logo en base64"""
+    try:
+        # Chemins possibles
+        possible_paths = [
+            "assets/logo.png",
+            "static/logo.png", 
+            "logo.png",
+            "./assets/logo.png",
+            "./static/logo.png",
+            "./logo.png"
+        ]
+        
+        # Vérifier chaque chemin
+        for path_str in possible_paths:
+            path = Path(path_str)
+            if path.exists() and path.is_file():
+                with open(path, "rb") as f:
+                    return base64.b64encode(f.read()).decode()
+        
+        # Si aucun fichier trouvé
+        return None
+        
+    except Exception as e:
+        print(f"Erreur dans get_logo_base64: {e}")
+        return None
 # Configuration de la page
 st.set_page_config(
     page_title="📈 StatAnalytica",
@@ -826,24 +851,6 @@ def load_css():
 
 # Charger le CSS
 load_css()
-def get_logo_base64():
-    """Convertit le logo en base64 avec fallback"""
-    logo_paths = [
-        Path("assets/logo.png"),
-        Path("static/logo.png"),
-        Path("logo.png"),
-        Path(__file__).parent / "assets" / "logo.png",
-    ]
-    
-    for path in logo_paths:
-        if path.exists():
-            try:
-                with open(path, "rb") as f:
-                    return base64.b64encode(f.read()).decode()
-            except:
-                continue
-    
-    return None
 
 # === Header avec logo et auteurs ===
 def create_header():
@@ -1043,93 +1050,49 @@ def main_page():
 
 # === Page sidebar ===
 def create_sidebar():
-   logo_b64 = get_logo_base64()
-
-if logo_b64:
-    st.markdown(f"""
-    <div style="text-align: center; margin-bottom: 2rem;">
-        <div style="
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            overflow: hidden;
-            border: 3px solid rgba(67, 97, 238, 0.3);
-            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.25);
-            transition: transform 0.3s;
-        ">
-            <img src="data:image/png;base64,{logo_b64}" 
-                 alt="StatAnalytica" 
-                 style="width: 100%; height: 100%; object-fit: cover;">
-        </div>
-        <h2 style="
-            margin: 0; 
-            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 800;
-            font-size: 1.9rem;
-            letter-spacing: -0.5px;
-            margin-bottom: 5px;
-        ">
-            📊 StatAnalytica
-        </h2>
-        <p style="
-            margin: 0; 
-            color: #6b7280; 
-            font-size: 0.85rem;
-            font-weight: 500;
-            opacity: 0.8;
-        ">
-            Master ROMARIN
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-else:
-    # Fallback avec emoji si logo non trouvé
-    st.markdown("""
-    <div style="text-align: center; margin-bottom: 2rem;">
-        <div style="
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            font-size: 32px;
-            color: white;
-            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
-        ">
-            📊
-        </div>
-        <h2 style="
-            margin: 0; 
-            color: #4361ee;
-            font-weight: 800;
-            font-size: 1.9rem;
-            letter-spacing: -0.5px;
-            margin-bottom: 5px;
-        ">
-            StatAnalytica
-        </h2>
-        <p style="
-            margin: 0; 
-            color: #6b7280; 
-            font-size: 0.85rem;
-            font-weight: 500;
-            opacity: 0.8;
-        ">
-            Advanced Statistical Analysis
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-
+  with st.sidebar:
+        # DÉFINIR logo_b64 AVANT de l'utiliser
+        logo_b64 = get_logo_base64()
+        
+        # Afficher le logo
+        if logo_b64 is not None and logo_b64 != "":
+            # Avec logo
+            st.markdown(f"""
+            <!-- Logo avec image -->
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <img src="data:image/png;base64,{logo_b64}" 
+                     alt="StatAnalytica"
+                     style="width: 80px; height: 80px; border-radius: 15px; margin-bottom: 10px;">
+                <h3 style="margin: 0; color: #4361ee;">StatAnalytica</h3>
+                <p style="margin: 5px 0 0 0; color: #6b7280; font-size: 0.9rem;">
+                    Master ROMARIN
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            # Fallback sans logo
+            st.markdown("""
+            <!-- Logo fallback -->
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div style="
+                    width: 80px; height: 80px; 
+                    background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+                    border-radius: 15px; 
+                    display: inline-flex; 
+                    align-items: center; 
+                    justify-content: center;
+                    margin-bottom: 10px;
+                    font-size: 32px;
+                    color: white;
+                ">
+                    📊
+                </div>
+                <h3 style="margin: 0; color: #4361ee;">StatAnalytica</h3>
+                <p style="margin: 5px 0 0 0; color: #6b7280; font-size: 0.9rem;">
+                    Advanced Statistical Analysis
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
 
 # === Fonction principale ===
 def main():
@@ -1145,6 +1108,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
