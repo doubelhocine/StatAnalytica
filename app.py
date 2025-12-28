@@ -1020,7 +1020,7 @@ def main_page():
             <h3>👥 À propos des auteurs</h3>
             <p><strong>Dounia Belhocine & Hadil Bachir</strong></p>
             <p>Étudiantes en Master 2 specialisées en Recherches Operationnelles Management 
-            Risques et Négociations.avec un intérêt particulier pour l’analyse quantitative et la modélisation .</p>
+            Risques et Négociations, avec un intérêt particulier pour l’analyse quantitative et la modélisation .</p>
         </div>
         """, unsafe_allow_html=True)
     
@@ -1108,6 +1108,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
