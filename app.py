@@ -1129,20 +1129,7 @@ else:
         </p>
     </div>
     """, unsafe_allow_html=True)
- # Informations de session
-     st.markdown("---")
-     st.markdown("### 📊 Session actuelle")
-        
-        if "journal" in st.session_state and "session" in st.session_state["journal"]:
-            session_info = st.session_state["journal"]["session"]
-            st.markdown(f"**ID Session :** `{session_info['session_id'][:8]}...`")
-            st.markdown(f"**Débutée le :** {session_info['date_debut']}")
-        
-        # Bouton de réinitialisation
-        if st.button("🔄 Nouvelle session", use_container_width=True):
-            for key in list(st.session_state.keys()):
-                del st.session_state[key]
-            st.rerun()
+
 
 # === Fonction principale ===
 def main():
@@ -1158,6 +1145,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
